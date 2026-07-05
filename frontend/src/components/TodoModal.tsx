@@ -66,20 +66,20 @@ export default function TodoModal({ isOpen, onClose, onSubmit, todo, isSubmittin
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 transition-all duration-300">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4 transition-all duration-300">
       {/* Modal card */}
-      <div className="bg-slate-900/90 border border-white/10 w-full max-w-lg rounded-2xl p-7 flex flex-col gap-6 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+      <div className="bg-page-card border border-page-card-border w-full max-w-lg rounded-2xl p-7 flex flex-col gap-6 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
         
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-white/5 pb-4">
-          <h2 className="text-xl font-semibold font-heading text-white flex items-center gap-2">
+        <div className="flex items-center justify-between border-b border-page-card-border/50 pb-4">
+          <h2 className="text-xl font-semibold font-heading text-page-text flex items-center gap-2">
             <CheckSquare className="w-5 h-5 text-brand-violet" />
             {todo ? 'Chỉnh Sửa Công Việc' : 'Thêm Công Việc Mới'}
           </h2>
           <button
             onClick={onClose}
             disabled={isSubmitting}
-            className="text-slate-400 hover:text-white hover:bg-white/5 p-1.5 rounded-full transition-colors disabled:opacity-50"
+            className="text-page-dim hover:text-page-text hover:bg-black/5 dark:hover:bg-white/5 p-1.5 rounded-full transition-colors disabled:opacity-50"
           >
             <X className="w-5 h-5" />
           </button>
@@ -88,32 +88,30 @@ export default function TodoModal({ isOpen, onClose, onSubmit, todo, isSubmittin
         {/* Form */}
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           {validationError && (
-            <div className="text-xs font-semibold text-rose-500 bg-rose-500/10 border border-rose-500/20 px-4 py-3 rounded-lg">
+            <div className="text-xs font-semibold text-status-danger bg-status-danger-bg border border-status-danger/20 px-4 py-3 rounded-lg">
               {validationError}
             </div>
           )}
 
           {/* Title */}
           <div className="flex flex-col gap-2">
-            <label htmlFor="todo-title" className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-              Tiêu đề <span className="text-rose-500">*</span>
+            <label htmlFor="todo-title" className="text-xs font-semibold text-page-muted uppercase tracking-wider">
+              Tiêu đề <span className="text-status-danger">*</span>
             </label>
-            <div className="relative">
-              <input
-                id="todo-title"
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Nhập tiêu đề công việc..."
-                disabled={isSubmitting}
-                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-brand-violet focus:ring-2 focus:ring-brand-violet/20 outline-none transition-all disabled:opacity-50"
-              />
-            </div>
+            <input
+              id="todo-title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="Nhập tiêu đề công việc..."
+              disabled={isSubmitting}
+              className="w-full bg-black/5 dark:bg-black/30 border border-page-card-border rounded-xl px-4 py-3 text-sm text-page-text placeholder-page-dim focus:border-brand-violet focus:ring-2 focus:ring-brand-violet/20 outline-none transition-all disabled:opacity-50"
+            />
           </div>
 
           {/* Description */}
           <div className="flex flex-col gap-2">
-            <label htmlFor="todo-desc" className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <label htmlFor="todo-desc" className="text-xs font-semibold text-page-muted uppercase tracking-wider flex items-center gap-1.5">
               <FileText className="w-3.5 h-3.5" /> Mô tả
             </label>
             <textarea
@@ -123,13 +121,13 @@ export default function TodoModal({ isOpen, onClose, onSubmit, todo, isSubmittin
               placeholder="Nhập mô tả chi tiết công việc..."
               rows={3}
               disabled={isSubmitting}
-              className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:border-brand-violet focus:ring-2 focus:ring-brand-violet/20 outline-none transition-all resize-none disabled:opacity-50"
+              className="w-full bg-black/5 dark:bg-black/30 border border-page-card-border rounded-xl px-4 py-3 text-sm text-page-text placeholder-page-dim focus:border-brand-violet focus:ring-2 focus:ring-brand-violet/20 outline-none transition-all resize-none disabled:opacity-50"
             />
           </div>
 
           {/* Due Date */}
           <div className="flex flex-col gap-2">
-            <label htmlFor="todo-due" className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <label htmlFor="todo-due" className="text-xs font-semibold text-page-muted uppercase tracking-wider flex items-center gap-1.5">
               <Calendar className="w-3.5 h-3.5" /> Hạn chót (Due date)
             </label>
             <input
@@ -138,17 +136,17 @@ export default function TodoModal({ isOpen, onClose, onSubmit, todo, isSubmittin
               value={dueDate}
               onChange={(e) => setDueDate(e.target.value)}
               disabled={isSubmitting}
-              className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-brand-violet focus:ring-2 focus:ring-brand-violet/20 outline-none transition-all color-scheme-dark disabled:opacity-50"
+              className="w-full bg-black/5 dark:bg-black/30 border border-page-card-border rounded-xl px-4 py-3 text-sm text-page-text focus:border-brand-violet focus:ring-2 focus:ring-brand-violet/20 outline-none transition-all color-scheme-dark disabled:opacity-50"
             />
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-end gap-3 border-top border-white/5 pt-4 mt-2">
+          <div className="flex items-center justify-end gap-3 border-t border-page-card-border/50 pt-4 mt-2">
             <button
               type="button"
               onClick={onClose}
               disabled={isSubmitting}
-              className="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 border border-white/10 transition-all disabled:opacity-50"
+              className="px-5 py-2.5 rounded-xl text-sm font-semibold text-page-muted hover:text-page-text hover:bg-black/5 dark:hover:bg-white/5 border border-page-card-border transition-all disabled:opacity-50"
             >
               Hủy
             </button>

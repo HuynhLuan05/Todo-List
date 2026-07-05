@@ -1,25 +1,97 @@
-@import "tailwindcss";
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
 
-@theme {
+@import "tailwindcss";
+
+:root {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
 
   --color-brand-violet: hsl(263, 76%, 57%);
   --color-brand-indigo: hsl(230, 78%, 56%);
+
+  /* Light Theme Variables */
+  --bg-page: hsl(240, 20%, 98%);
+  --bg-gradient: radial-gradient(circle at 50% 0%, hsl(240, 30%, 96%) 0%, hsl(240, 20%, 93%) 100%);
+  --color-card: rgba(255, 255, 255, 0.75);
+  --color-card-hover: rgba(255, 255, 255, 0.95);
+  --color-card-border: rgba(0, 0, 0, 0.08);
+  --color-card-border-hover: rgba(0, 0, 0, 0.15);
+  --color-text-main: hsl(240, 10%, 12%);
+  --color-text-muted: hsl(240, 8%, 38%);
+  --color-text-dim: hsl(240, 6%, 55%);
+  --shadow-box: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --shadow-box-hover: 0 20px 30px -10px rgba(0, 0, 0, 0.08), 0 12px 15px -8px rgba(0, 0, 0, 0.05);
   
-  --color-dark-bg: hsl(240, 22%, 7%);
-  --color-dark-card: rgba(20, 20, 35, 0.55);
-  --color-dark-card-hover: rgba(28, 28, 48, 0.75);
+  /* Status Colors */
+  --success: hsl(142, 70%, 42%);
+  --success-bg: rgba(16, 185, 129, 0.08);
+  --warning: hsl(38, 92%, 45%);
+  --warning-bg: rgba(245, 158, 11, 0.08);
+  --danger: hsl(0, 84%, 52%);
+  --danger-bg: rgba(239, 68, 68, 0.08);
+}
+
+:root.dark {
+  /* Dark Theme Variables */
+  --bg-page: hsl(240, 22%, 7%);
+  --bg-gradient: radial-gradient(circle at 50% 0%, hsl(244, 30%, 14%) 0%, hsl(240, 22%, 6%) 100%);
+  --color-card: rgba(20, 20, 35, 0.55);
+  --color-card-hover: rgba(28, 28, 48, 0.75);
+  --color-card-border: rgba(255, 255, 255, 0.08);
+  --color-card-border-hover: rgba(255, 255, 255, 0.16);
+  --color-text-main: hsl(0, 0%, 98%);
+  --color-text-muted: hsl(240, 8%, 76%);
+  --color-text-dim: hsl(240, 5%, 52%);
+  --shadow-box: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  --shadow-box-hover: 0 20px 50px -15px rgba(0, 0, 0, 0.8);
+  
+  /* Status Colors */
+  --success: hsl(142, 70%, 46%);
+  --success-bg: rgba(16, 185, 129, 0.08);
+  --warning: hsl(38, 92%, 50%);
+  --warning-bg: rgba(245, 158, 11, 0.08);
+  --danger: hsl(0, 84%, 55%);
+  --danger-bg: rgba(239, 68, 68, 0.08);
+}
+
+@theme {
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
+
+  --color-brand-violet: var(--color-brand-violet);
+  --color-brand-indigo: var(--color-brand-indigo);
+
+  --color-page-bg: var(--bg-page);
+  --color-page-card: var(--color-card);
+  --color-page-card-hover: var(--color-card-hover);
+  --color-page-card-border: var(--color-card-border);
+  --color-page-card-border-hover: var(--color-page-card-border-hover);
+  --color-page-text: var(--color-text-main);
+  --color-page-muted: var(--color-text-muted);
+  --color-page-dim: var(--color-text-dim);
+  
+  --color-status-success: var(--success);
+  --color-status-success-bg: var(--success-bg);
+  --color-status-warning: var(--warning);
+  --color-status-warning-bg: var(--warning-bg);
+  --color-status-danger: var(--danger);
+  --color-status-danger-bg: var(--danger-bg);
+
+  --shadow-page-box: var(--shadow-box);
+  --shadow-page-box-hover: var(--shadow-box-hover);
 }
 
 @layer base {
   body {
-    background-color: var(--color-dark-bg);
-    background-image: radial-gradient(circle at 50% 0%, hsl(244, 30%, 14%) 0%, hsl(240, 22%, 6%) 100%);
-    color: hsl(0, 0%, 98%);
+    background-color: var(--bg-page);
+    background-image: var(--bg-gradient);
+    color: var(--color-text-main);
     min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  button, select, input[type="checkbox"], input[type="radio"], label {
+    cursor: pointer;
   }
   
   /* Custom scrollbar */
@@ -31,10 +103,10 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(120, 120, 120, 0.15);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(120, 120, 120, 0.3);
   }
 }
