@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.3.2",
     "axios": "^1.6.8",
     "lucide-react": "^0.368.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "srt-todo-monorepo": "file:.."
+    "srt-todo-monorepo": "file:..",
+    "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
     "@types/node": "^24.13.2",
