@@ -245,12 +245,9 @@ export default function App() {
         <div className="bg-brand-violet/10 border border-brand-violet/20 p-2.5 rounded-2xl mb-4">
           <ListTodo className="w-8 h-8 text-brand-violet" />
         </div>
-        <h1 className="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-page-text via-page-text to-page-muted bg-clip-text text-transparent">
+        <h1 className="font-heading text-2xl sm:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-page-text via-page-text to-page-muted bg-clip-text text-transparent">
           Quản Lý Công Việc
         </h1>
-        <p className="text-page-muted text-sm sm:text-base mt-2 font-medium">
-          Todo List hiện đại, bóng bẩy với tối ưu hoá hiệu năng
-        </p>
       </div>
 
       {/* Statistics Cards */}
@@ -320,7 +317,11 @@ export default function App() {
             placeholder="Tìm kiếm công việc..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-black/5 dark:bg-black/25 border border-page-card-border rounded-xl pl-11 pr-4 py-2.5 text-sm text-page-text placeholder-page-dim focus:border-brand-violet focus:ring-2 focus:ring-brand-violet/10 outline-none transition-all"
+            className="w-full rounded-xl pl-11 pr-4 py-2.5 text-sm text-page-text placeholder-page-dim focus:ring-2 focus:ring-brand-violet/20 outline-none transition-all shadow-sm"
+            style={theme === 'dark'
+              ? { background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)' }
+              : { background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(0,0,0,0.13)' }
+            }
           />
         </div>
 
@@ -332,7 +333,11 @@ export default function App() {
             <select
               value={filters.status}
               onChange={(e) => setFilters((prev) => ({ ...prev, status: e.target.value as any, page: 1 }))}
-              className="bg-black/5 dark:bg-black/25 border border-page-card-border rounded-xl px-3.5 py-2.5 text-sm text-page-muted focus:border-brand-violet outline-none transition-all min-w-[140px] flex-1 sm:flex-none"
+              className="rounded-xl px-3.5 py-2.5 text-sm text-page-text outline-none transition-all min-w-[140px] flex-1 sm:flex-none shadow-sm"
+              style={theme === 'dark'
+                ? { background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)' }
+                : { background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(0,0,0,0.13)' }
+              }
             >
               <option value="" className="bg-page-card text-page-text">Tất cả trạng thái</option>
               <option value="pending" className="bg-page-card text-page-text">Chưa hoàn thành</option>
@@ -343,7 +348,11 @@ export default function App() {
             <select
               value={filters.sortBy}
               onChange={(e) => setFilters((prev) => ({ ...prev, sortBy: e.target.value as any, page: 1 }))}
-              className="bg-black/5 dark:bg-black/25 border border-page-card-border rounded-xl px-3.5 py-2.5 text-sm text-page-muted focus:border-brand-violet outline-none transition-all min-w-[140px] flex-1 sm:flex-none"
+              className="rounded-xl px-3.5 py-2.5 text-sm text-page-text outline-none transition-all min-w-[140px] flex-1 sm:flex-none shadow-sm"
+              style={theme === 'dark'
+                ? { background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)' }
+                : { background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(0,0,0,0.13)' }
+              }
             >
               <option value="createdAt" className="bg-page-card text-page-text">Sắp xếp: Ngày tạo</option>
               <option value="dueDate" className="bg-page-card text-page-text">Sắp xếp: Hạn chót</option>
@@ -359,7 +368,11 @@ export default function App() {
                   page: 1,
                 }))
               }
-              className="p-3 bg-black/5 dark:bg-black/25 border border-page-card-border rounded-xl hover:bg-black/10 dark:hover:bg-white/5 text-page-dim hover:text-page-text transition-all shrink-0"
+              className="p-3 rounded-xl text-page-dim hover:text-page-text transition-all shrink-0 shadow-sm"
+              style={theme === 'dark'
+                ? { background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)' }
+                : { background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(0,0,0,0.13)' }
+              }
               title="Đổi chiều sắp xếp"
             >
               <ArrowUpDown className="w-4 h-4" />
