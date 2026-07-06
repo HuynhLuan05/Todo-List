@@ -65,7 +65,7 @@
   --color-page-card: var(--color-card);
   --color-page-card-hover: var(--color-card-hover);
   --color-page-card-border: var(--color-card-border);
-  --color-page-card-border-hover: var(--color-page-card-border-hover);
+  --color-page-card-border-hover: var(--color-card-border-hover);
   --color-page-text: var(--color-text-main);
   --color-page-muted: var(--color-text-muted);
   --color-page-dim: var(--color-text-dim);

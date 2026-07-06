@@ -81,13 +81,11 @@ export class TodoService {
   }
 
   /**
-   * Update a todo item by ID
+   * Update a todo item by ID.
+   * If the record does not exist, Prisma throws P2025 which the global
+   * error middleware catches and converts to a 404 response.
    */
   static async updateTodo(id: string, data: UpdateTodoInput) {
-    // Check if the todo item exists
-    const existing = await this.getTodoById(id);
-    if (!existing) return null;
-
     const updateData: any = {};
     if (data.title !== undefined) updateData.title = data.title;
     if (data.description !== undefined) updateData.description = data.description;
@@ -103,7 +101,8 @@ export class TodoService {
   }
 
   /**
-   * Toggle the completion status (pending <-> completed)
+   * Toggle the completion status (pending <-> completed).
+   * Requires a SELECT first to read the current status — unavoidable.
    */
   static async toggleTodoStatus(id: string) {
     const existing = await this.getTodoById(id);
@@ -118,12 +117,11 @@ export class TodoService {
   }
 
   /**
-   * Delete a todo item by ID
+   * Delete a todo item by ID.
+   * If the record does not exist, Prisma throws P2025 which the global
+   * error middleware catches and converts to a 404 response.
    */
   static async deleteTodo(id: string) {
-    const existing = await this.getTodoById(id);
-    if (!existing) return null;
-
     return prisma.todo.delete({
       where: { id },
     });

@@ -68,7 +68,8 @@ export const queryTodoSchema = z.object({
     .default('10')
     .transform((val) => {
       const parsed = parseInt(val, 10);
-      return isNaN(parsed) || parsed < 1 ? 10 : parsed;
+      if (isNaN(parsed) || parsed < 1) return 10;
+      return Math.min(parsed, 100); // cap at 100 to prevent oversized queries
     }),
 });
 

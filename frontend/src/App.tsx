@@ -192,9 +192,8 @@ export default function App() {
         const res = await todoApi.createTodo(data);
         if (res.success) {
           showToast('Tạo công việc mới thành công', 'success');
-          setFilters((prev) => ({ ...prev, page: 1 })); // Reset to first page to see new todo
-          fetchTodos();
-          fetchStats();
+          // setFilters triggers useEffect → fetchTodos + fetchStats automatically
+          setFilters((prev) => ({ ...prev, page: 1 }));
         }
       }
       setIsModalOpen(false);

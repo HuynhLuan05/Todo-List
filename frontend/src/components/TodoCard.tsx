@@ -84,7 +84,7 @@ export default function TodoCard({ todo, onToggle, onEdit, onDelete }: TodoCardP
               <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-500 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
                 Hoàn thành
               </span>
-            ) : todo.dueDate && new Date(todo.dueDate).getTime() < Date.now() ? (
+            ) : dueStatus.label === 'Quá hạn' ? (
               <span className="text-[10px] font-bold uppercase tracking-wider text-status-danger bg-status-danger-bg border border-status-danger/20 px-2 py-0.5 rounded-full">
                 Trễ hạn
               </span>

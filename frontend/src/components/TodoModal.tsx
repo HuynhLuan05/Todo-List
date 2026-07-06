@@ -52,8 +52,8 @@ export default function TodoModal({ isOpen, onClose, onSubmit, todo, isSubmittin
     }
 
     try {
-      // Convert local date (YYYY-MM-DD) to ISO-8601 string at UTC midnight
-      const isoDate = dueDate ? new Date(dueDate).toISOString() : null;
+      // Convert local date (YYYY-MM-DD) to ISO-8601 string
+      const isoDate = dueDate ? new Date(`${dueDate}T00:00:00`).toISOString() : null;
       await onSubmit({
         title: title.trim(),
         description: description.trim(),

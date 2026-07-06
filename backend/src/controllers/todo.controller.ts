@@ -74,18 +74,12 @@ export class TodoController {
   static async updateTodo(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      
+
       // Validate request body
       const parsedBody = updateTodoSchema.parse(req.body);
-      
+
+      // Service throws P2025 if not found → global error middleware returns 404
       const updatedTodo = await TodoService.updateTodo(id, parsedBody);
-      
-      if (!updatedTodo) {
-        return res.status(404).json({
-          success: false,
-          message: 'Không tìm thấy công việc để cập nhật',
-        });
-      }
 
       return res.status(200).json({
         success: true,
@@ -129,15 +123,9 @@ export class TodoController {
   static async deleteTodo(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      
+
+      // Service throws P2025 if not found → global error middleware returns 404
       const deletedTodo = await TodoService.deleteTodo(id);
-      
-      if (!deletedTodo) {
-        return res.status(404).json({
-          success: false,
-          message: 'Không tìm thấy công việc để xóa',
-        });
-      }
 
       return res.status(200).json({
         success: true,
