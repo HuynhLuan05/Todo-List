@@ -2,7 +2,9 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   testMatch: ['**/tests/**/*.test.ts'],
-  // Runs before each test suite to override DATABASE_URL → isolated test.db
+  // Runs ONCE before all test suites: creates test.db schema via prisma db push
+  globalSetup: '<rootDir>/tests/globalSetup.js',
+  // Runs before each test file: overrides DATABASE_URL to point at test.db
   setupFiles: ['<rootDir>/tests/setup.js'],
   verbose: true,
   forceExit: true,
